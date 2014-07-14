@@ -1,0 +1,21 @@
+1.Host name of system
+	command : $hostname
+2. operating system
+	command : uname -a
+		uname -mrs
+3. full path of home directory
+	command 
+		$pwd
+		$echo ~
+		$echo $HOME
+		$echo /home.$USER
+4. current user of system
+	command
+		$who
+	other user
+		getent passwd | cut -d: -f1 
+
+5 . What groups you belong to?
+	command : groups
+6. command to listing files and sub directory
+	command : ls
