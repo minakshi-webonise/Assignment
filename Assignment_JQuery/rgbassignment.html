@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<title> RGB Game 
+</title>
+
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src = "jquery-1.11.1.js"></script>
+<script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+<div id="container">  <!-- main container of site -->
+<div id ="header">    <!-- div having header -->
+<h1> RGB Game </h1>
+</div>
+<center>
+<div id ="main">
+<h4> "Please choose Color" </h4> 
+
+<!-- form holding radio buttons -->
+<form>
+<input type="radio" name="color" value="red" id = "1">Red
+<input type="radio" name="color" value="green" id = "2">Green 
+<input type="radio" name="color" value="blue" id = "3">Blue <br>
+</form>
+<br> 
+<!-- grid box containing boxes named 1 to 9 -->  
+<table class="table" border= "1">
+	<tr>
+		<td>1</td>
+		<td>2</td>		
+		<td>3</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>5</td>		
+		<td>6</td>
+	</tr>
+	<tr>
+		<td>7</td>
+		<td>8</td>		
+		<td>9</td>
+	</tr>
+</table>
+<br>
+
+<button id = "reset" onclick = "resetfunction()" type="button">Reset</button>
+<button id = "shuffle" type="button">Shuffle</button>
+</div>
+</center>
+</div>
+</body>
+</html>
