@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<title> Plot line</title>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="script.js"></script>
+
+</head>
+<body>
+<div id="container">  <!-- main container of site -->
+<div id = "header">
+<center>
+<h1> Plot Line </h1>
+</div>
+<blockquote></blockquote>
+<div id = "main">
+
+<br> <br>
+Enter equation :  <input id ="equation" type="text" name="equation" value="2x+3y=300"><br>
+<br>
+Start point  : <input id = "start_point" type= "text" name = "startpoint" value="enter start point here"> </br>
+<br>
+End point  : <input id = "end_point" type= "text" name = "endpoint" value="enter end point here"> </br>
+<br>
+Step  : <input id = "step" type= "text" name = "step" value="enter step here"> </br>
+<br>
+Scale Factor  : <input id = "scale" type= "text" name = "scale" value=""> </br>
+<br>
+
+<input type="button" onClick="getEquation()" value="Submit" />
+
+</div>
+
+<canvas id="myCanvas" width="900" height="600" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+</div>
+</body>
