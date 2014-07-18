@@ -17,40 +17,34 @@ vector <string> methods;
 **/ 
 class InterpretLanguage {
 	public :
-		void identifyLang(char filename[]);                     //Method for identifying language
-		int isPhp(char filename[]);				//method to check whether input file php or not
-		void isRuby(char filename[]);                           //method to find classes of ruby file
-		void isJava(char filename[]);				// method to functions in java	
-		void GetClass(char filename[]);                         // Get calss of php and methods inside it
-		void display();  					// Displaying language, classes and methods inside it.
+		void identifyLang(char filename[]);
+		void readFile(char filename[]);
+		void isPhp(char filename[]);
+		void isRuby(char filename[]);
+		void isJava(char filename[]);
+		void display();
 };
-
 /** method for identifies language, call methods of particular language 
 to get class name and methods present
 **/
 void InterpretLanguage::identifyLang(char *filename) {
-	InterpretLanguage language;       	                           //language is object of class InterpretLanguage
-	string file = filename;						   //string variable to store file name
-	int c = 0;				    	
-	file = file.substr(0, file.find_last_of( '.' ));             	   //removes extension of file
-	if (fp.is_open()) {                                               // check wheather file is open or not
+	InterpretLanguage language;                                  //language is object of class InterpretLanguage
+	string file = filename;					     //string variable to store file name	
+	file = file.substr(0, file.find_last_of( '.' ));             //removes extension of file
+	if (fp.is_open()) {                                            // check wheather file is open or not
  		while (!fp.eof()) {
 			fp >> output;
 			if(strcmp(output, "<?php")==0 ) {
-				phpflag = 1; 
-				c = language.isPhp(filename); 		 //call method isPhp to identify php language
-				cout << "c" <<c;                         //sets phpflag = 1 if language is php
-				if( phpflag == 1 && c > 0) {				
-					language.GetClass(filename);
-				 } 
+				phpflag = 1;                            //sets phpflag = 1 if language is php
+				language.isPhp(filename);
 			}
 			else if((strcmp(output,"def")==0)|| (strcmp(output,"end") ==0 )) {
-				 rubyflag = 1;   
-			         language.isRuby(filename);             //call isRuby method to get filename
+				rubyflag = 1;                             //sets rubyflag = 1 if language is php
+				language.isRuby(filename);
 			}
 			else if ((strcmp(output,"public")==0) || (strcmp(output,"private")==0)  || (strcmp(output,"class")==0)) {
 				fp>> output;
-				if((strcmp(output,"class")==0) || output == file) {   //check class name and file name. if same then language is 												java &set flag to 1
+				if((strcmp(output,"class")==0) || output == file) {   //check class name and file name. if same then langiage is java &set flag to 1
 					fp >> output;
 					if(output == file) {
 						javaflag =1;
@@ -64,28 +58,9 @@ void InterpretLanguage::identifyLang(char *filename) {
 		
 	}
 }
-
-/* Method to find interpret language php by counting keywords in php file and returns count
-*/
-int InterpretLanguage::isPhp(char *filename) {
-	int count = 0;
-	fp.seekg(0, fp.beg);
-	if (fp.is_open()) {
- 		while (!fp.eof()) {
-			fp >> output;
-			if(((strcmp(output,"class")==0)) || (strcmp(output,"echo")==0) || (strcmp(output,"$this")==0) || output[0]== '$' ){
-				count ++;
-	
-			}
-		}
-	}
-	return count;
-}
-
 /** Method for php which identifies classes and methods in php
 **/
-void InterpretLanguage::GetClass(char *filename) {
-	fp.seekg(0, fp.beg);
+void InterpretLanguage::isPhp(char *filename) {
 	if (fp.is_open()) {
  		while (!fp.eof()) {
 			fp >> output;
@@ -100,30 +75,25 @@ void InterpretLanguage::GetClass(char *filename) {
 			else
 				continue;
 		}
-		
-		
 	}
 }
 /** Method for ruby which identifies classes and methods in ruby
 **/
 void InterpretLanguage::isRuby(char *filename) {
-	fp.seekg(0, fp.beg);	
-		if (fp.is_open()) {
-	 		while (!fp.eof()) { 
+	if (fp.is_open()) {
+ 		while (!fp.eof()) { 
+			fp >> output;
+			if((strcmp(output,"class")==0) ) {		//occurance of class keyword in ruby
 				fp >> output;
-				if((strcmp(output,"class")==0) ) {		//occurance of class keyword in ruby
-					fp >> output;
-					classes.push_back(output);		//push class names in vector
-				}
-				else if((strcmp(output,"def")==0) ) {		//occurance of def keyword in ruby
-					fp >> output;
-					methods.push_back(output);		 //push function names in vector
-				}
+				classes.push_back(output);		//push class names in vector
+			}
+			else if((strcmp(output,"def")==0) ) {		//occurance of def keyword in ruby
+				fp >> output;
+				methods.push_back(output);		 //push function names in vector
 			}
 		}
-	
+	}
 }
-
 /** Method for java which identifies classes and methods in Javaa
 **/
 void InterpretLanguage::isJava(char *filename){
@@ -132,8 +102,7 @@ void InterpretLanguage::isJava(char *filename){
 			fp >> output;
 			if((strcmp(output,"public")==0) || (strcmp(output,"private")==0) || (strcmp(output,"protected")==0) ) {
 				fp>>output;
-				if((strcmp(output,"String")==0) || (strcmp(output,"void")==0) ||   //check for return type of method
-				(strcmp(output,"Long")==0)||(strcmp(output,"Double")==0)) {
+				if((strcmp(output,"String")==0) || (strcmp(output,"void")==0) || (strcmp(output,"Long")==0)||(strcmp(output,"Double")==0)) {
 					fp>>output;
 					methods.push_back(output);		 //push function names in vector
 				}	
@@ -173,7 +142,7 @@ int main() {
 	cout << "Enter name of file" <<endl;                            //Take input from user
 	cin>>filename;
 	fp.open(filename,ios::in);					//open file
-	InterpretLanguage object;                                       //Creating object of class InterpretLanguage to call all methoinsideit.	
+	InterpretLanguage object;                                       //Creating object of class InterpretLanguage to call all methods inside it.	
 	object.identifyLang(filename);                                  //calling identifyLang method 
 	object.display();
 	fp.close();							//close file
