@@ -1,0 +1,43 @@
+$(document).ready(function() {
+	var c = document.getElementById("myCanvas");
+	var canvas = c.getContext("2d");
+	canvas.translate(450, 300);
+	canvas.fillText("(0,0)",0,0);
+	canvas.scale(1,-1);
+	canvas.beginPath();
+	canvas.moveTo(0,0);
+	canvas.lineTo(450, 0);
+	canvas.stroke();
+	
+	canvas.beginPath();
+	canvas.moveTo(0,0);
+	canvas.lineTo(0,300);
+	canvas.stroke()
+
+	canvas.beginPath();
+	canvas.moveTo(0,0);
+	canvas.lineTo(0,-300);
+	canvas.stroke()
+	
+	canvas.beginPath();
+	canvas.moveTo(0,0);
+	canvas.lineTo(-450,0);
+	canvas.stroke()
+	for(i = 0; i< 450; i = i+20) {
+		canvas.fillText("|", i, 0);	
+	}
+	for(i = 0; i > -450; i = i-20) {
+		canvas.fillText("|", i, 0);	
+	}
+	for(i = 0; i< 300; i = i+20) {
+		canvas.fillText("_", 0, i);	
+	}
+	for(i = 0; i > -300; i = i-20) {
+		canvas.fillText("_", 0, i);	
+	}		
+
+
+
+
+
+}

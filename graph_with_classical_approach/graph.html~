@@ -3,9 +3,8 @@
 <title> Plot line</title>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
-<script type="text/javascript" src="graph.js"></script>
-
-<script src = "jquery-1.11.1.js"></script>
+<script type="text/javascript" src="script1.js"></script>
+<script type="text/javascript" src="graph_init.js"></script>
 
 </head>
 <body>
@@ -29,7 +28,7 @@ Step  : <input id = "step" type= "text" name = "step" value=""> </br>
 Scale Factor  : <input id = "scale" type= "text" name = "scale" value=""> </br>
 <br>
 
-<input type="button" onClick="main()" value="Submit" />
+<input type="button" onClick="callParseEquation()" value="Submit" />
 
 </div>
 
