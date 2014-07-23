@@ -1,0 +1,84 @@
+Mongo Db
+1. Mongo db is open source,
+2. Database is document based.
+3.  It id NOSQL database. 
+4. Data is stored in BSON format.
+5. It is schema less.
+6.  Mongo db can grow horizontally and vertically.
+7. Data is stored in collection. Collection id group of documents.
+8. Data is stored in key value pair.
+9. There are two types o data models
+a. Embedded data model
+b. Normalized data model
+
+10. Commands
+a. Mongodb
+b. Use database-name
+c. Show dbs
+d. Db.collection.insert({“key”, “value”})
+e. Db.collction.find()
+
+
+
+
+COllection creating and inserting data
+		db.assesment.insert( 
+		 {  name : "math",
+		 questions : [ {
+		 	q_id : 1,
+			q_type : "math" ,
+			q_name : "pythagorus thm", 
+			options : 
+				{ choice1 : "a",
+				  choice2 :"b", 
+				  choice3 : "c" 
+				}
+			},
+			{
+			q_id : 1, 
+			q_type : "math",
+			q_name : "newtons law" , 
+			options : {
+				choice1 : "a", 
+				choice2 :"b", 
+				choice3 : "c" 
+				}
+			}
+		]
+
+db.assesment.insert( 
+		 {  id : 1 ,
+		name : "math",
+		 questions : [ {
+		 	q_id : 1,
+			q_type : "math" ,
+			q_name : "pythagorus thm", 
+			options : 
+				{ choice1 : "a",
+				  choice2 :"b", 
+				  choice3 : "c" 
+				}
+			}]
+		}
+	);
+
+
+
+
+Update QUery
+db.assesment.update({id : 1, 'questions.q_id':1},{$set:{'questions.$.q_type':'math'}})
+
+
+
+
+
+BASE
+Basically Available
+Soft state
+Eventually consistent
+
+	Non relation database follows BASE properties, database can grow vertically as well as horizontally. It doesn't have schema.
+Basically available means is some part of database goes wrong, other data will be accessible to user, means some query goes wrong it doen't affect whole database.
+Soft state means state of system may change, if we give input to it or some event occurs state may change, it is not fixed.
+
+
